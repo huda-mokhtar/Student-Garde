@@ -1,0 +1,34 @@
+﻿@model IEnumerable<WebApplication8.Models.Course>
+
+@{
+    ViewBag.Title = "All Courses";
+}
+
+<h2>All Courses</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create",null, new { @class = "btn btn-primary" })
+</p>
+    <table class=" table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CName)
+                </th>
+                <th> Setting</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CName)
+                    </td>
+                    <td>
+                        <pre> <a href="/Courses/edit/@item.CId"> <i class="fa fa open-card-option fa-wrench"></i></a>   <a href="/Courses/delete/@item.CId"> <i class="fa fa-trash close-card"></i></a> </pre>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

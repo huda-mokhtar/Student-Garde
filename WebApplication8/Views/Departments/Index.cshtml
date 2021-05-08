@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WebApplication8.Models.Department>
+
+@{
+    ViewBag.Title = "All Departments";
+}
+
+<h3>All Departments</h3>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayName("DepartmentName")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.dName)
+    </td>
+    <td>
+        <pre> <a href="/departments/edit/@item.dId"> <i class="fa fa open-card-option fa-wrench"></i></a>    <a href="/departments/delete/@item.dId"> <i class="fa fa-trash close-card"></i></a>   @Html.ActionLink("AddCourse", "Index", "DepartmentCourses", new { id = item.dId }, new { @class ="btn btn - light" }) </pre>
+    </td>
+
+</tr>
+}
+
+</table>

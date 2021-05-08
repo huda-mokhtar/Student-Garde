@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav-right">
+
+
+            <li class="user-profile header-notification">
+                @if (User.IsInRole("Admin"))
+                {
+                    <img src="~/Content/assets/images/1.jpg" class="img-radius" alt="User-Profile-Image">
+                }
+                else
+                {
+                    <img src="~/Content/assets/images/default_profile_400x400.png" class="img-radius" alt="User-Profile-Image">
+                }
+
+                <span>@Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage")</span>
+                <i class="ti-angle-down"></i>
+                <ul class="show-notification profile-notification">
+                    <li class="waves-effect waves-light">
+                        <a href="/Manage">
+                            <i class="ti-settings"></i> Settings
+                        </a>
+                    </li>
+                    <li class="waves-effect waves-light">
+                        <a href="Admin/index">
+                            <i class="ti-user"></i> Profile
+                        </a>
+                    </li>
+                    <li class="waves-effect waves-light">
+                        <a href="javascript:document.getElementById('logoutForm').submit()">
+                            <i class="ti-layout-sidebar-left"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

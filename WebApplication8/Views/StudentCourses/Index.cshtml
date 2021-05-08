@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WebApplication8.Models.StudentCourse>
+
+@{
+    ViewBag.Title = "Grade";
+}
+
+<h2>Grade</h2>
+@if (User.IsInRole("Instructor"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create", null, new { id = ViewBag.Std.Id }, new { @class = "btn btn-primary" })
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.CName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grade)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.CName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grade)
+            </td>
+            <td>
+                @if (User.IsInRole("Instructor"))
+                {
+                    <pre> <a href="/StudentCourses/edit?StId=@item.StdId&CrsId=@item.CourseId"> <i class="fa fa open-card-option fa-wrench"></i></a>   <a href="/StudentCourses/delete?StId=@item.StdId&CrsId=@item.CourseId"> <i class="fa fa-trash close-card"></i></a></pre>
+
+                }
+            </td>
+        </tr>
+    }
+</table>
+@if (User.IsInRole("Instructor"))
+{
+    <div>
+        @Html.ActionLink("Back to List", "InsStudent", "Instructors")
+    </div>
+}
+@if (User.IsInRole("Admin"))
+{
+    <div>
+        @Html.ActionLink("Back to List", "Index", "Students")
+    </div>
+}

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<WebApplication8.Models.DepartmentCourse>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>add course</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create",new {id= ViewBag.dept },new {@class="btn btn-light"})
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.CName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Course.CName)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { DeptId = item.DeptId, CourseId = item.CourseId },new {@class="btn btn-danger "})
+        </td>
+    </tr>
+}
+</table>
+<div>
+    @Html.ActionLink("Back to List", "Index","Departments")
+</div>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WebApplication8.Models.Student>
+
+@{
+    ViewBag.Title = "All Students";
+}
+
+<h3>All Students</h3>
+
+<table class=" table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayName("Dept Name")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.FirstName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LastName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Age)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Department.dName)
+    </td>
+    <td>
+        <pre> <a href="/students/edit/@item.Id"> <i class="fa fa open-card-option fa-wrench"></i></a>    <a href="/students/delete/@item.Id"> <i class="fa fa-trash close-card"></i></a>    @Html.ActionLink("Grade", "Index", "StudentCourses", new { id = item.Id },  new { @class = "btn btn-primary" }) </pre>
+    </td>
+</tr>
+}
+
+</table>

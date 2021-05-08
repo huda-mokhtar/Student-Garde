@@ -1,0 +1,34 @@
+﻿@model WebApplication8.Models.Course
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<h5>Are you sure you want to delete this course?</h5>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("CourseName")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+            </div>
+        </div>
+     }
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>
